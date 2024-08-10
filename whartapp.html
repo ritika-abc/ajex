@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hameediya Farms
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-md-6 my-2">
+                            <input type="text" class="form-control name" value="" placeholder="Enter Your Name" />
+                        </div>
+                        <div class="col-12 col-md-6 my-2">
+                            <input type="number" class="form-control number" value="" placeholder="Enter Your Number" />
+                        </div>
+                        <div class="col-12  my-2">
+                            <input type="email" class="form-control email" value="" placeholder="Enter Your Email" />
+                        </div>
+   
+   
+   
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" onclick="go()" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function go() {
+            var name = document.querySelector(".name").value;
+            var email = document.querySelector(".email").value;
+            var number = document.querySelector(".number").value;
+            var url = "https://wa.me/919443215836?text=" +
+                "Name: " +
+                name + " " +
+                "Number: " +
+                number + " " +
+                "Email :" + email;
+            window.open(url, "_blank").focus();
+        }
+    </script>
+    <script>
+        function contact() {
+            var na = document.querySelector(".name").value;
+            var em = document.querySelector(".email").value;
+            var sub = document.querySelector(".subject").value;
+            var mes = document.querySelector(".message").value;
+            var url1 = "https://wa.me/919443215836?text=" +
+                "Name: " +
+                na + " " +
+                "Email: " +
+                em + " " +
+                "Subject :" + sub +
+                "Message :" + mes
+                ;
+            window.open(url1, "_blank").focus();
+        }
+    </script>
+</body>
+</html>

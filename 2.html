@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+         
+    <body style="text-align:center;">    
+        <h1 style="color:green;">
+            GeeksforGeeks
+        </h1>
+         
+        <h2>DOM Marquee direction Property</h2>
+         
+        <marquee id="marqueeID" direction="up">
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+            <p> GeeksforGeeks:A computer Science Portal for Geeks  </p>       
+
+            
+        </marquee>        
+        <br><br>
+         
+        <button onclick="btnClick()">
+            Get direction of Marquee element 
+        </button>
+        <p id="paraID"></p>
+ 
+ 
+ 
+ 
+ 
+        <script>
+            function btnClick() {
+                var txt = document.getElementById(
+                    "marqueeID").direction;
+ 
+                document.getElementById(
+                    "paraID").innerHTML = txt;
+            }
+        </script>    
+    </body>
+</html>            
