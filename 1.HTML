@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="slider-viewport" aria-roledescription="carousel">
+        <div class="slider" id="example">
+            <figure class="slide">
+                <picture>
+                    <img src="1.jpg" alt="Alt 1" />
+                </picture>
+            </figure>
+            <figure class="slide">
+                <img src="2.jpg" alt="Alt 2" />
+            </figure>
+            <figure class="slide">
+                <img src="3.jpg" alt="Alt 3" />
+            </figure>
+        </div>
+    </section>
+
+
+
+    <script>
+        // Fade Slider
+        const fadeSlider = new BoxSlider(
+            document.getElementById('example'),
+            new FadeSlider(),
+            {
+                // options here
+            },
+        )
+
+        // Cube Slider
+        const cubeSlider = new BoxSlider(
+            document.getElementById('example'),
+            new CubeSlider(),
+            {
+                // options here
+            },
+        )
+
+        // Tile Slider
+        const tileSlider = new BoxSlider(
+            document.getElementById('example'),
+            new TileSlider(),
+            {
+                // options here
+            },
+        )
+
+        // Carousel Slider
+        const carouselSlider = new BoxSlider(
+            document.getElementById('example'),
+            new CarouselSlider(),
+            {
+                // options here
+            }
+        )
+    </script>
+
+    <script>
+        // before transition
+        slider.addEventListener('before', (data) => {
+            // data: {
+            //   currentIndex: number
+            //   nextIndex: number
+            //   speed: number
+            // }
+        })
+
+        // after transition
+        slider.addEventListener('after', (data) => {
+            // data: {
+            //   currentIndex: number
+            //   speed: number
+            // }
+        })
+
+        // when playing
+        slider.addEventListener('play', (data) => {
+            // data: {
+            //   currentIndex: number
+            //   speed: number
+            // }
+        })
+
+        // when paused
+        slider.addEventListener('pause', (data) => {
+            // data: {
+            //   currentIndex: number
+            //   speed: number
+            // }
+        })
+
+        // when destroyed
+        slider.addEventListener('destroy', () => {
+            // No event data
+        })
+    </script>
+</body>
+
+</html>

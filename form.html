@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Multiple Services</title>
+    <style>
+        .service-row { margin-bottom: 10px; }
+        .remove-service { color: red; cursor: pointer; margin-left: 10px; }
+        .add-service { margin-top: 10px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Add Services</h1>
+    <form id="servicesForm" action="insert.php" method="post">
+        <div id="servicesContainer">
+            <div class="service-row">
+                <input type="text" name="name[]" placeholder="Service Name" required>
+                <input type="text" name="description[]" placeholder="Service Description" required>
+                <span class="remove-service">Remove</span>
+            </div>
+        </div>
+        <button type="button" class="add-service">Add Another Service</button>
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        $(document).ready(function() {
+            // Add new service input fields
+            $('.add-service').click(function() {
+                $('#servicesContainer').append(
+                    '<div class="service-row">' +
+                    '<input type="text" name="name[]" placeholder="Service Name" required>' +
+                    '<input type="text" name="description[]" placeholder="Service Description" required>' +
+                    '<span class="remove-service">Remove</span>' +
+                    '</div>'
+                );
+            });
+
+            // Remove service input fields
+            $('#servicesContainer').on('click', '.remove-service', function() {
+                $(this).parent().remove();
+            });
+        });
+    </script>
+</body>
+</html>
