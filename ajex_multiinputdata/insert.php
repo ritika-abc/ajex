@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the data from the form
     $names = $_POST['name'];
     $descriptions = $_POST['description'];
+    $product = $_POST['product'];
 
     // Generate the SQL query for bulk insert
     $values = [];
@@ -26,11 +27,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Sanitize data to prevent SQL injection
         $name = $conn->real_escape_string($name);
         $description = $conn->real_escape_string($description);
-        $values[] = "('$name', '$description')";
+        $product = $conn->real_escape_string($product); // Sanitize product field
+        $values[] = "('$name', '$description', '$product')";
     }
-    
+
     if (!empty($values)) {
-        $sql = "INSERT INTO services (name, description) VALUES " . implode(', ', $values);
+        $sql = "INSERT INTO services (name, description, product) VALUES " . implode(', ', $values);
     
         // Execute the query
         if ($conn->query($sql) === TRUE) {
