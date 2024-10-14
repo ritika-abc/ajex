@@ -1,0 +1,146 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cropper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <style>
+        .img-container {
+            max-width: 100%;
+            margin: auto;
+        }
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="uploadImage" accept="image/*">
+    <div class="img-container">
+        <img id="image" src="" alt="Image to crop">
+    </div>
+    <button id="crop">Crop Image</button>
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var cropper;
+            $('#uploadImage').on('change', function(event) {
+                var files = event.target.files;
+                var done = function(url) {
+                    $('#image').attr('src', url);
+                };
+                if (files && files.length > 0) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        done(e.target.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            $('#image').on('load', function() {
+                cropper = new Cropper(this, {
+                    aspectRatio: 16 / 9,
+                    viewMode: 1
+                });
+            });
+
+            $('#crop').click(function() {
+                var canvas = cropper.getCroppedCanvas();
+                $('#canvas').replaceWith(canvas);
+                canvas.toBlob(function(blob) {
+               
+                    console.log(blob);
+                });
+            });
+        });
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cropper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <style>
+        .img-container {
+            max-width: 100%;
+            margin: auto;
+        }
+        img {
+            max-width: 100%;
+        }
+        #crop-info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="uploadImage" accept="image/*">
+    <div class="img-container">
+        <img id="image" src="" alt="Image to crop">
+    </div>
+    <button id="crop">Crop Image</button>
+    <div id="crop-info"></div>
+    <canvas id="canvas" style="display: none;"></canvas>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var cropper;
+            $('#uploadImage').on('change', function(event) {
+                var files = event.target.files;
+                var done = function(url) {
+                    $('#image').attr('src', url);
+                };
+                if (files && files.length > 0) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        done(e.target.result);
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            $('#image').on('load', function() {
+                cropper = new Cropper(this, {
+                    aspectRatio: 16 / 9,
+                    viewMode: 1,
+                    ready: function () {
+                        // Reset crop data on load
+                        $('#crop-info').empty();
+                    }
+                });
+            });
+
+            $('#crop').click(function() {
+                var canvas = cropper.getCroppedCanvas();
+                $('#canvas').replaceWith(canvas);
+
+                // Get crop data
+                var cropData = cropper.getData();
+                $('#crop-info').html(`
+                    <p>X: ${cropData.x.toFixed(2)}</p>
+                    <p>Y: ${cropData.y.toFixed(2)}</p>
+                    <p>Width: ${cropData.width.toFixed(2)}</p>
+                    <p>Height: ${cropData.height.toFixed(2)}</p>
+                `);
+                
+                canvas.toBlob(function(blob) {
+                    // Handle the cropped image blob as needed
+                    console.log(blob);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

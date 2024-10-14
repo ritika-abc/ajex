@@ -11,8 +11,9 @@
     <form  action=" " class="mobile-search hidedesktop" id="liveSearchForm">
         <label for="searchType" class="sr-only">Search Type</label>
         <select id="searchType" style="height: 40px;" class="form-control bg-light border text-dark" required>
-            <option value="buyleads">Buyleads</option>
-            <option value="product">Products</option>
+        <option value="product">Products</option>
+        <option value="buyleads">Buyleads</option>
+           
         </select>
         <input type="search" style="height: 40px;" class="form-control bg-white border text-dark" name="query" id="searchQuery" placeholder="Search..." required>
         <button style="height: 40px;" class="btn btn-primary border" type="submit"><i class="icon-search"></i> Search</button>
