@@ -5,105 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <style>
+        /* .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: clamp(2rem, 2.8vw, 5rem);
+            font-family: Raleway;
+            font-weight: bold;
+        } */
+
+        .container{
+            display: flex;
+        }
+        .typewriter {
+            width: 21.5ch;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #212121;
+            animation: cursor 1s step-start infinite,
+                text 5s steps(18) alternate infinite;
+        }
+
+        @keyframes cursor {
+
+            0%,
+            100% {
+                border-color: #212121;
+            }
+        }
+
+        @keyframes text {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 21.5ch;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <section class="slider-viewport" aria-roledescription="carousel">
-        <div class="slider" id="example">
-            <figure class="slide">
-                <picture>
-                    <img src="1.jpg" alt="Alt 1" />
-                </picture>
-            </figure>
-            <figure class="slide">
-                <img src="2.jpg" alt="Alt 2" />
-            </figure>
-            <figure class="slide">
-                <img src="3.jpg" alt="Alt 3" />
-            </figure>
-        </div>
-    </section>
+ 
+    <div class="container ">
+        <span>Welcome to Web Design & Development </span> <div class="typewriter"> sadasd</div>        
+          
+    </div>
 
-
-
-    <script>
-        // Fade Slider
-        const fadeSlider = new BoxSlider(
-            document.getElementById('example'),
-            new FadeSlider(),
-            {
-                // options here
-            },
-        )
-
-        // Cube Slider
-        const cubeSlider = new BoxSlider(
-            document.getElementById('example'),
-            new CubeSlider(),
-            {
-                // options here
-            },
-        )
-
-        // Tile Slider
-        const tileSlider = new BoxSlider(
-            document.getElementById('example'),
-            new TileSlider(),
-            {
-                // options here
-            },
-        )
-
-        // Carousel Slider
-        const carouselSlider = new BoxSlider(
-            document.getElementById('example'),
-            new CarouselSlider(),
-            {
-                // options here
-            }
-        )
-    </script>
-
-    <script>
-        // before transition
-        slider.addEventListener('before', (data) => {
-            // data: {
-            //   currentIndex: number
-            //   nextIndex: number
-            //   speed: number
-            // }
-        })
-
-        // after transition
-        slider.addEventListener('after', (data) => {
-            // data: {
-            //   currentIndex: number
-            //   speed: number
-            // }
-        })
-
-        // when playing
-        slider.addEventListener('play', (data) => {
-            // data: {
-            //   currentIndex: number
-            //   speed: number
-            // }
-        })
-
-        // when paused
-        slider.addEventListener('pause', (data) => {
-            // data: {
-            //   currentIndex: number
-            //   speed: number
-            // }
-        })
-
-        // when destroyed
-        slider.addEventListener('destroy', () => {
-            // No event data
-        })
-    </script>
+    
 </body>
 
 </html>
