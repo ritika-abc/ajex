@@ -5,605 +5,151 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <style>
-    body {
-      margin: 0;
-      color: #263238;
-      background: linear-gradient(to bottom, #804a5d, #ffebee);
-      font-family: Inconsolata, monospace;
-    }
-
-    *,
-    *::after,
-    *::before {
-      box-sizing: border-box;
-    }
-
-    :root {
-      font-size: 16px;
-    }
-
-    @keyframes loaderAnim {
-      to {
-        opacity: 1;
-        transform: scale3d(0.5, 0.5, 1);
-      }
-    }
-
-    [data-scroll] {
-      will-change: transform;
-    }
-
-    .frame {
-      padding: 2.5rem 3rem;
-      position: absolute;
-      z-index: 0;
-    }
-
-    .frame__title {
-      font-size: 1rem;
-      margin: 0 0 2.5rem;
-    }
-
-    .frame__demos {
-      margin: 1rem 0;
-    }
-
-    .frame__demo--current,
-    .frame__demo--current:hover {
-      color: #263238;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      align-items: center;
-      padding: 12rem 0;
-      counter-reset: figure;
-    }
-
-    .item {
-      margin: 10vh auto;
-      max-width: 100%;
-      position: relative;
-      will-change: transform;
-    }
-
-    .item:nth-child(even) .item__caption {
-      text-align: right;
-    }
-
-    .item::before {
-      counter-increment: figure;
-      content: counter(figure, decimal-leading-zero);
-      position: absolute;
-      font-family: Lora, serif;
-      mix-blend-mode: color-dodge;
-      font-weight: 800;
-      font-size: 15em;
-      color: rgba(255, 205, 210, 0.5);
-      bottom: calc(100% - 0.5em);
-      z-index: 9;
-    }
-
-    .item:nth-child(even)::before {
-      right: 0;
-    }
-
-    .item__img-wrap {
-      overflow: hidden;
-      width: 50vw;
-      margin: 0 auto;
-      padding-bottom: calc(100% / calc(1/1.5));
-      max-width: 100%;
-      will-change: transform;
-    }
-
-    .item__img-wrap::before {
-      content: "";
+    h1 {
+      font-family: 'Open Sans', sans-serif;
+      position: fixed;
+      top: 50%;
       width: 100%;
-      z-index: 12;
-      background-color: white;
-      mix-blend-mode: saturation;
-      height: 100%;
-      position: absolute;
-      display: block;
-      top: 0;
-      right: 0;
-      transition: transform 800ms ease-in;
-      opacity: 1;
+      text-align: center;
+      color: white;
+      text-shadow: 3px 3px 8px black;
     }
 
-    .item:first-child .item__img-wrap {
-      padding-bottom: calc(100% / calc(8/10));
+    #section1,
+    #section2,
+    #section3,
+    #section4 {
+      min-height: 800px;
     }
 
-    .item:first-child .item__img {
-      background-image: url(https://images.unsplash.com/photo-1563371385-d1d5df411171?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2475&q=80);
+    #section1 {
+      background: royalblue;
     }
 
-    .item:nth-child(2) .item__img-wrap {
-      width: 1000px;
-      padding-bottom: calc(100% / calc(120/76));
+    #section2 {
+      background: gold;
     }
 
-    .item:nth-child(2) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1535003450606-5cf22e849d87?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
+    #section3 {
+      background: purple;
     }
 
-    .item:nth-child(3) .item__img-wrap {
-      padding-bottom: calc(100% / calc(60/75));
-    }
-
-    .item:nth-child(3) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1559763668-94423eb21bab?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2434&q=80);
-    }
-
-    .item:nth-child(4) .item__img-wrap {
-      width: 800px;
-      padding-bottom: calc(100% / calc(900/505));
-    }
-
-    .item:nth-child(4) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1547808605-035ba9794319?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
-    }
-
-    .item:nth-child(5) .item__img-wrap {
-      padding-bottom: calc(100% / calc(6/8));
-    }
-
-    .item:nth-child(5) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1560583035-6d14e41fac5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2434&q=80);
-    }
-
-    .item:nth-child(6) .item__img-wrap {
-      padding-bottom: calc(100% / calc(1500/844));
-    }
-
-    .item:nth-child(6) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1509121003850-4f6c8ff25623?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2553&q=80);
-    }
-
-    .item:nth-child(7) .item__img-wrap {
-      width: 900px;
-      padding-bottom: calc(100% / calc(1000/749));
-    }
-
-    .item:nth-child(7) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1560583035-79c3e11ae176?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2434&q=80);
-    }
-
-    .item:nth-child(8) .item__img-wrap {
-      width: 900px;
-      padding-bottom: calc(100% / calc(1000/562));
-    }
-
-    .item:nth-child(8) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1494271823928-a80211877d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
-    }
-
-    .item:nth-child(9) .item__img-wrap {
-      padding-bottom: calc(100% / calc(60/75));
-    }
-
-    .item:nth-child(9) .item__img {
-      background-image: url(https://images.unsplash.com/photo-1507437072862-10c124d3596b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2434&q=80);
-    }
-
-    .item__img {
-      --overflow: 40px;
-      height: calc(100% + (2 * var(--overflow)));
-      top: calc(-1 * var(--overflow));
-      width: 100%;
-      position: absolute;
-      background-image: var(--image);
-      background-size: cover;
-      background-position: 50% 0%;
-      will-change: transform;
-    }
-
-    .item__img--t1 {
-      --overflow: 60px;
-    }
-
-    .item__img--t2 {
-      --overflow: 80px;
-    }
-
-    .item__img--t3 {
-      --overflow: 120px;
-    }
-
-    .item__caption {
-      padding: 2rem 1rem;
-    }
-
-    .item__caption-title {
-      font-family: Inconsolata, monospace;
-      letter-spacing: 0.1em;
-      font-weight: 400;
-      font-size: 3rem;
-      text-transform: lowercase;
-      margin: 0;
-    }
-
-    .item__caption-copy {
-      margin: 0;
-    }
-
-    .item__caption-copy::before {
-      content: "__";
-      line-height: 1;
-      color: #f8bbd0;
-      font-weight: 700;
-      font-size: 1em;
-      margin: 0 0 1em;
-      display: block;
+    #section4 {
+      background: teal;
     }
   </style>
 </head>
 
 <body>
-  <!--
-Messing around with this:
-https://tympanus.net/codrops/2019/07/10/how-to-add-smooth-scrolling-with-inner-image-animations-to-a-web-page/
--->
+  <h1>Smooth Mouse Scroll</h1>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur inventore ex fugiat nam autem temporibus numquam neque sequi in necessitatibus. Neque suscipit eius ut totam saepe repellat modi impedit ullam sint incidunt dolor quisquam fugiat iusto reprehenderit dolorem, libero id temporibus molestiae aspernatur enim. Sit optio pariatur nobis quia aut impedit enim adipisci ratione atque ab cum libero quam assumenda tempora quibusdam, odio, obcaecati deserunt laudantium mollitia laboriosam voluptatum. Odio dolorum libero nostrum enim sequi consectetur ea aperiam veniam, laudantium quas quaerat tempora perferendis molestias voluptates, nam voluptatibus modi natus officiis quo. Debitis explicabo reiciendis quos cumque? Ipsum quod animi optio provident aliquid ratione laborum sed, sapiente tempora consequatur. Corrupti quis, quasi ut quod similique nulla accusamus fugit dignissimos perferendis saepe quaerat quos accusantium corporis blanditiis temporibus minima labore optio neque soluta expedita minus amet tempora? Dignissimos deleniti minus sed, exercitationem corrupti odio nemo iste dolorem perferendis neque incidunt illum adipisci numquam soluta. Sit inventore cupiditate modi! Dolores minus similique ullam, ea aliquam, minima nemo consequatur nostrum quo eveniet architecto! Reiciendis sit quidem assumenda itaque distinctio explicabo libero at, ab, odit aliquid ea fugit. Earum dolor tenetur ratione repellat, laborum optio voluptate ea sit cumque voluptatum praesentium pariatur quo blanditiis aut veniam ipsam molestiae? Unde sunt architecto accusamus tenetur pariatur sequi nisi, corrupti expedita facilis alias fugiat dolorem voluptatibus, praesentium itaque dolorum soluta quis. Sed aspernatur soluta commodi perspiciatis? Dolore a aliquid rem, maiores sequi eaque, molestiae eius perferendis rerum, quis tenetur atque! Dignissimos, obcaecati inventore. Velit labore sunt corrupti iure maiores reiciendis provident eum, pariatur voluptatem sed earum culpa aliquam, vel, ipsam ipsum ullam incidunt minima! Maiores repellendus eaque ipsum rerum assumenda, illo modi. Sapiente quisquam explicabo beatae quaerat. Nostrum animi fugiat earum magnam velit exercitationem quam aliquid sequi! Rerum in eaque autem fugiat iure itaque voluptatem? Nemo magnam dolorem iure, officiis hic totam nulla asperiores vel. Repudiandae cumque suscipit nesciunt error aperiam, illum iure porro neque. Sit maxime eos dolorem, sed voluptas, eligendi vero reiciendis, ea quod temporibus nobis repellendus aspernatur cupiditate? Reprehenderit placeat optio nesciunt eligendi sit delectus impedit error rem? Laborum quidem aliquam repudiandae velit exercitationem, iste nemo temporibus. Nobis sed, blanditiis ullam magnam harum ea provident vel, quia ipsa, maiores reprehenderit facilis. At perferendis excepturi, suscipit dolorum dignissimos nulla officia, placeat inventore a temporibus nobis voluptatum incidunt officiis corrupti, minima odio nostrum. Maxime tenetur ut cum provident ullam, laborum reiciendis, vel earum iste enim pariatur repudiandae natus at delectus accusantium dolores vitae. Sed dolores facilis culpa exercitationem ratione voluptate sunt doloribus nobis? Sunt laborum nobis voluptas voluptatem dolorem, quos distinctio facilis ratione itaque repudiandae laudantium ut error quisquam at natus dolores et culpa dolore? Enim, rerum? Voluptatibus ratione quo vel excepturi, sed nemo quia nisi amet magni iste doloremque reprehenderit? Accusantium voluptate possimus aliquid error vitae quae corrupti totam sequi veniam cupiditate placeat quam cum distinctio corporis, eaque blanditiis obcaecati nam optio mollitia rerum accusamus dolorem impedit. Reprehenderit cum asperiores rem dolorum tempora illum quod alias, eligendi sequi praesentium non sint voluptate nihil at. Modi adipisci voluptatibus, error in alias, ullam, nostrum odio assumenda commodi quibusdam molestias cumque magni consectetur libero! Explicabo rem sint veniam laborum facilis dicta voluptatibus, accusantium ullam provident nostrum nulla temporibus assumenda natus expedita officiis eum quam hic ducimus pariatur aperiam! Autem necessitatibus nobis a nulla consectetur possimus quasi, dolores est expedita mollitia facere provident praesentium quos qui. Sit maxime, temporibus officia dolor, similique voluptates iusto provident animi fugiat assumenda tempora ad eos ut, sint praesentium eum corporis consequatur incidunt quae fugit saepe illo culpa. Sequi doloremque architecto accusantium dicta cumque, laborum dolores voluptatum dolore voluptatem odit laboriosam molestiae numquam perferendis esse! Quos sapiente iure ex molestias, quod obcaecati. Fuga officiis et qui officia? Aspernatur debitis quidem voluptates sequi excepturi atque placeat eos impedit similique cupiditate magnam, reiciendis recusandae, odio accusamus alias veniam. Consequatur rem blanditiis inventore sapiente atque dolorum eaque quos, ratione natus odio hic architecto voluptas reprehenderit illum quo, repudiandae amet minima laudantium, praesentium facere vel. Ullam sed hic in quis facilis! Quaerat nam nisi maxime distinctio quidem. Quod quae autem et qui consectetur perspiciatis reiciendis, ea earum unde temporibus corporis similique eum rerum dolorem, perferendis officia illo? Dolore, in accusantium facilis debitis sit tempora earum nostrum possimus dignissimos veritatis, et nobis temporibus animi ullam voluptatem optio voluptatum dolorem exercitationem maxime. Aperiam provident minima aliquam, dolore dolor magnam quia vel ab amet asperiores. Ratione dolor quisquam officiis consequatur aut eveniet obcaecati nesciunt tenetur dolorem, quaerat est veritatis voluptas nobis enim assumenda, non maxime reprehenderit nisi natus minus. Dolorum fugit nulla aspernatur inventore sapiente esse id illum aut adipisci distinctio qui rerum aperiam aliquam eligendi explicabo corrupti omnis dolorem dolores ad sunt praesentium suscipit, sit culpa exercitationem! In quo veniam culpa impedit blanditiis fugit placeat expedita, aut harum consectetur officia eaque laudantium, assumenda doloremque delectus facere est veritatis fuga reprehenderit illo at vitae. Fugiat nesciunt nemo odit iure, atque maxime, molestiae necessitatibus deserunt reiciendis eveniet accusamus iste totam commodi nam consequatur cumque ab officia consectetur quis obcaecati voluptas veniam aspernatur. Fugit animi nesciunt placeat architecto officia similique aliquid labore ea inventore? Quia exercitationem non earum? Quaerat est illo ipsum itaque numquam laboriosam excepturi sint perspiciatis eaque reiciendis similique provident beatae minus impedit consequatur voluptate recusandae, non velit. Provident, rem dolorem dolor neque officia nemo iure pariatur fuga est blanditiis totam, amet corrupti autem. Enim architecto quas commodi! Dolores illum, atque minima facere nobis officiis cum fuga culpa asperiores expedita dolore est ut veritatis recusandae porro ipsam sapiente eaque tenetur voluptatibus error cupiditate accusantium accusamus tempore. Voluptas iusto aut quos dignissimos excepturi beatae, rem fugit veritatis saepe expedita sunt dolorem maxime earum sint cumque, eos deleniti reprehenderit labore laboriosam placeat. Aperiam sed doloremque laboriosam suscipit, facilis saepe esse porro odit! Ipsam nulla cum soluta iste nesciunt veritatis! Asperiores debitis facere laudantium quibusdam pariatur velit, adipisci alias, et explicabo animi veniam! Cupiditate, itaque facilis. Suscipit a laudantium quas, vel laborum blanditiis incidunt est, deleniti, delectus dolores labore fugiat! Maxime ea nesciunt aliquam! Nam aut quidem esse vero minima atque eveniet cupiditate architecto eligendi aspernatur, deleniti similique, praesentium optio possimus? Maiores excepturi quae rerum odio fugiat quaerat suscipit nobis, alias asperiores dicta debitis molestias, fugit tempora vero aperiam repellendus ipsa, incidunt harum dolorum quia eius illum. Pariatur harum accusamus eaque deleniti explicabo suscipit soluta iure! Rem tempore a sequi, iure omnis libero fuga veniam minus soluta est illum dolorum enim molestias recusandae ad unde cupiditate neque officia sint. Ratione sint saepe libero eaque possimus ex natus, praesentium odit mollitia minus nam beatae reiciendis labore voluptatum nostrum recusandae fugiat placeat obcaecati nesciunt architecto quae est nemo exercitationem aliquid? Officia animi et minima illo corrupti! Maxime, soluta? Voluptate autem quae tenetur, quia ipsam nemo earum molestias eligendi magnam animi itaque molestiae perferendis at, deserunt amet odio vero quo ratione consequatur doloremque ad, ut nesciunt quis explicabo! Blanditiis consequuntur sunt earum autem amet! Nisi, nostrum? Fugit, explicabo qui. Fugit nam suscipit consequuntur minima quidem perferendis facilis quaerat tempora nostrum veniam aliquam, laudantium dolorum impedit voluptatum fuga rerum molestiae ab mollitia nemo? Debitis eligendi odio amet dolor exercitationem deleniti architecto blanditiis illum reprehenderit nostrum, quidem consectetur enim, harum obcaecati? Obcaecati, optio doloribus dolores ea pariatur voluptatibus, nisi repellat suscipit illum unde officiis mollitia praesentium, incidunt libero hic sint distinctio? Asperiores alias laudantium sunt incidunt ratione magni accusantium fugiat officiis perspiciatis exercitationem. Deserunt consectetur possimus ipsum alias aliquam non voluptatibus perferendis odit, cupiditate optio sapiente aspernatur voluptate eos recusandae sed illum animi? Dolorum vero quo laudantium, explicabo eveniet inventore pariatur sunt cumque tempora quibusdam dignissimos. Praesentium sapiente iste architecto expedita distinctio, modi itaque, quo eveniet beatae recusandae ea officia reprehenderit nulla deserunt exercitationem ut, error cum! Ullam asperiores itaque cupiditate sunt omnis nisi amet voluptate debitis. Nesciunt consequatur maxime dolor quo dolorem eaque, autem distinctio! Officiis quisquam ea excepturi distinctio quae saepe, natus repellendus vero similique tenetur hic a repudiandae asperiores libero iusto necessitatibus voluptates. Quasi illum doloremque rerum amet suscipit laudantium iusto incidunt esse quas delectus enim ducimus, doloribus vero? In voluptas animi laborum eos quos laboriosam ipsam quas esse atque, nesciunt tempore voluptatum, consequuntur omnis nam praesentium? Eveniet nostrum reiciendis quaerat autem nisi explicabo incidunt sit atque tempore error. Dicta nisi assumenda corporis, iure nostrum vitae delectus magnam quis, modi minima aut at hic quia fuga architecto, quos ratione cupiditate voluptate sapiente. Optio inventore soluta eos quidem iure aspernatur, sequi voluptas earum ipsum accusantium hic maiores incidunt, deserunt, architecto unde sit id explicabo quasi dolorum totam laborum. Recusandae ut repellat, provident distinctio quia excepturi vero! Quaerat id voluptas voluptate rem numquam provident minima amet? Esse, nemo? Accusantium, eaque necessitatibus minima quae in nihil dignissimos id, aperiam consequuntur quos reiciendis hic aspernatur. A eveniet laborum velit. Tempore voluptatibus odio quibusdam animi, reiciendis officia iste voluptas laborum minima, reprehenderit quaerat asperiores illo similique cumque repudiandae earum sunt facilis! Cupiditate minima quod delectus explicabo eaque quisquam recusandae enim vel voluptatibus dolore soluta rerum maxime nesciunt odit, non officia veritatis! Facilis vel sunt nam quasi maiores. Vero quia maiores sed eos facere! Quia officia culpa excepturi consequuntur mollitia nesciunt ad quibusdam, at cumque optio! Amet, quod quae. Exercitationem doloribus quas iusto architecto ab non minima dicta commodi sit tenetur aspernatur veniam, culpa accusamus et quod libero ducimus sint, quos voluptatem quisquam. Velit recusandae consequatur cum atque modi quibusdam. Cum officia optio amet saepe. Mollitia illum nemo aut aliquam animi quae commodi, vel quasi molestias quia velit sunt porro quos voluptatum tempore voluptatibus necessitatibus doloribus excepturi debitis optio culpa omnis, quis possimus. Ipsum repellat iusto, quibusdam reiciendis vero, accusantium deserunt minus fugiat consectetur maxime tempora ipsam, eum ex quaerat unde? Culpa quidem debitis impedit modi voluptatibus, facere vel incidunt tenetur ut aperiam quae similique asperiores iure quasi rem nostrum magnam laborum. Optio, doloribus officia. Aperiam dolor fugiat minus ipsum aliquam numquam hic, delectus corrupti voluptates animi dolores voluptatem dolorum mollitia quisquam, culpa amet ut nesciunt commodi molestiae! Perferendis magnam libero laborum eveniet maiores esse consequatur enim ullam cum accusamus fuga repellendus eaque, iste atque? Officiis deleniti iste, asperiores est qui pariatur nam voluptate non eius, distinctio ratione repudiandae corrupti. Est voluptatem aliquid, aspernatur porro nostrum itaque tempore, amet explicabo accusantium fuga esse saepe enim facilis dolorum vero maxime incidunt! Numquam, suscipit! Nemo dolores, unde eligendi magnam laboriosam, temporibus officia exercitationem optio et consectetur, voluptatem rerum rem ad vero facilis quos animi odit ipsum. Facere quo, perferendis labore ad quidem quis porro consequatur cumque et neque, iusto recusandae voluptas expedita. Labore voluptate ullam quis cupiditate quo dolorem, quod sunt officia, voluptates libero tempore aliquam nobis consequatur voluptatum cum ratione pariatur obcaecati dolor exercitationem doloremque molestias. Ex ipsum earum voluptas quos laudantium et quaerat vitae. Enim perspiciatis impedit iste quaerat eveniet, rem quae libero! Consequatur, odio in aliquam reprehenderit veritatis minima a? Ratione quasi saepe atque debitis consequatur dolore quidem alias incidunt, facilis in, assumenda quae ipsa quod, sit similique. Consectetur pariatur repellat, debitis sapiente sint mollitia dolorem unde molestias corrupti dolor rem fugiat, qui doloremque quis a autem? Quas dolor a, minus odio repudiandae magnam quis ab. Dignissimos id ratione ducimus quaerat, atque culpa! Velit, quasi! Quis, libero. Numquam et odit eius enim similique reprehenderit soluta provident, esse quam. Itaque sed autem ut quaerat cum praesentium culpa ipsum! Aut rem quasi sequi? Pariatur laborum labore maiores possimus harum vel exercitationem iure veritatis, debitis est ipsam amet officiis tempore iste aspernatur cum repellendus dolore reprehenderit vitae optio nulla ratione temporibus. Quas hic enim, voluptatem asperiores eum animi accusamus quasi eos voluptas eius aspernatur suscipit ipsam reiciendis, officiis quis illo, ducimus minus placeat. Ullam eaque officia consequuntur optio soluta animi, iure enim delectus repellendus. Illo esse vero quod velit sed dolore commodi ullam maiores animi quidem architecto id quaerat, suscipit iste repellendus quos optio dignissimos ad laboriosam voluptatum quae consequatur adipisci. Aut quos repellendus necessitatibus iusto. Fuga suscipit reprehenderit consequuntur praesentium vitae quos dicta rerum distinctio quod ab doloremque facilis, beatae corrupti expedita enim ea quo? Repellendus explicabo soluta, quae aliquam error saepe provident facilis amet numquam, doloremque voluptates sapiente, aperiam molestias exercitationem voluptatum dolore? Iure laboriosam sint blanditiis aut rem eaque at enim similique, autem natus dignissimos nemo temporibus aspernatur minima libero dicta molestias quaerat. Tempora nemo mollitia vel similique praesentium dolores fugiat assumenda labore porro, autem illo ad facilis, provident dicta voluptates fugit vitae repellat facere? Quam quos voluptate sequi, vero et provident iure, assumenda unde facilis alias aliquid illum fuga, voluptatum in. Libero hic corporis quasi odio nobis laboriosam sed minus magni. Nobis aspernatur quisquam expedita consequatur cupiditate, laudantium molestias sed aliquam facere delectus nemo praesentium illo cum at perferendis rem autem, neque vel tempore totam dolores mollitia. Atque aut veritatis, modi delectus labore itaque velit consequatur veniam optio repudiandae nulla quisquam dolor voluptate ratione mollitia vel id obcaecati sint quam recusandae maxime laboriosam. Expedita earum rerum commodi aliquid voluptatum repellendus, ad dolorem natus cumque facilis, itaque, odio delectus quasi enim sunt eum nesciunt ipsum doloremque aut optio debitis cum tenetur quaerat? Eos accusantium unde asperiores ea fugiat eaque atque aut hic porro, quia laboriosam veniam ducimus deleniti consectetur ut, sit voluptatem totam id cumque aperiam quaerat! Necessitatibus, minima consequuntur! Ullam at totam natus accusamus autem, porro minus magni quibusdam necessitatibus animi eius quasi aliquid ea eveniet quis in provident repellat? Aperiam dolore ex eveniet perspiciatis fugit dignissimos nihil veritatis minima praesentium sequi quidem, cum autem voluptate obcaecati eius qui maxime maiores ullam quisquam dolores laboriosam quod? Consequuntur ab numquam iusto error voluptatem, dicta repudiandae, repellat, adipisci aliquid magni atque aspernatur quae tenetur ullam. Quisquam mollitia ullam tempora optio quaerat saepe officia dolores dolorum, accusamus neque deserunt rem eligendi veniam eos deleniti eum, alias necessitatibus qui ratione ad libero. Totam molestiae dolorum natus deleniti voluptate ex sit at ipsa est saepe provident inventore accusamus, eius placeat nisi ipsum sint suscipit repudiandae ducimus reprehenderit itaque magni possimus rerum! Magni aut suscipit earum quibusdam molestiae maiores eligendi, repellat voluptatem harum veniam iure dolore, libero eius recusandae fugiat omnis voluptatum ullam aspernatur soluta. Exercitationem error ratione id deserunt consequatur quas non, totam et. Quod aspernatur eum dolorum officia dolores ad. Accusantium laboriosam et ab exercitationem cupiditate a rem ad, eos mollitia fuga amet corrupti debitis sed consequuntur soluta tempore error veritatis, sequi consectetur harum doloribus! Consequatur, atque? Ipsam aspernatur quae sapiente et assumenda accusantium facere cumque sunt aperiam sint, quo sequi repellat, praesentium hic placeat voluptatem. Voluptas temporibus placeat, minus unde labore explicabo facere corporis, laboriosam corrupti harum error possimus fugiat pariatur quis exercitationem alias! Quae cum similique laborum ea. Fugit eaque, sequi minus illum iure aut corrupti laborum dolore odit consectetur nesciunt sint natus unde distinctio vitae recusandae, aperiam repellat placeat iste nobis amet. In provident sed nobis saepe! Nihil, praesentium iste doloribus ullam consequuntur soluta, molestiae sint ipsum sunt perferendis reiciendis rem tempora sed nobis. Officiis facere blanditiis quis maiores aut omnis beatae corporis neque quidem unde eos molestiae porro esse enim, dolore possimus laudantium temporibus iste. Dicta, tenetur facere? Quibusdam accusantium vitae dolorem saepe officiis, libero sit deserunt. Architecto explicabo, temporibus autem excepturi natus nesciunt neque quia ratione, praesentium fugiat asperiores nisi sapiente sunt rerum voluptate placeat reprehenderit id quos sint ab inventore, laborum odit modi vel? Itaque, animi in! Harum dolorum voluptatem ea laudantium quos eaque voluptates numquam molestiae tempore consequuntur. Ad similique fuga temporibus labore laudantium id aliquam nulla, fugit voluptates harum tenetur numquam explicabo? Assumenda consequatur asperiores sapiente incidunt! Modi sequi, adipisci vitae veritatis iure reprehenderit debitis eveniet. Tempora provident distinctio dicta nostrum deleniti nihil aperiam sed totam quos fuga facilis iure porro alias est ab quis, praesentium pariatur aliquam dolor nisi deserunt. Eum unde, doloremque consectetur repellat tempora minus neque iste dicta expedita fugiat alias, et illum pariatur? Consequatur quidem cupiditate dicta consequuntur laboriosam, pariatur doloribus error maxime accusantium distinctio aperiam perferendis non modi dolores vel commodi dignissimos, et quibusdam neque exercitationem dolore alias! Odit, obcaecati consectetur explicabo quam assumenda ipsam eos voluptatum, animi tenetur nisi ipsum illum facere a possimus temporibus autem cum aliquid nam voluptates fugit tempore cupiditate! Autem, veniam voluptas rerum cumque quo voluptates maxime doloribus unde quisquam et quas accusantium non at voluptatem dicta sunt distinctio tempora voluptate, minima, delectus nesciunt? Libero cum totam, assumenda necessitatibus odit quaerat unde tempore culpa illum reprehenderit quisquam, pariatur veritatis iusto dolorem quos molestiae dicta tempora accusamus dolorum perspiciatis alias atque quia. Similique doloremque illum aut eum quas ratione distinctio nesciunt fugiat quibusdam, nemo porro ea a culpa vero laudantium natus unde hic in doloribus eligendi, consectetur sed ipsam. Temporibus incidunt dolores ipsa sunt molestias libero quam perferendis possimus doloribus expedita. Consequuntur cum corporis sed illum nemo. Quia, ipsum eveniet. Perferendis autem nam debitis quam, commodi dolores a necessitatibus voluptate! Cum rem voluptatibus quam blanditiis sequi sed et incidunt dignissimos deserunt, similique eius quae ex repellendus nisi maxime atque nulla delectus animi itaque culpa! Blanditiis excepturi sunt accusantium corrupti possimus! Minima, excepturi quae. Nihil vel numquam, doloremque modi possimus, in non veritatis quae inventore pariatur qui aspernatur ea adipisci dolores corrupti voluptates placeat magni accusamus! Aut quos nostrum, voluptatem voluptatibus eveniet minima labore accusamus velit repellendus magni placeat neque voluptatum id quam accusantium ratione possimus, vitae voluptas tempora minus, et ducimus delectus ad incidunt! Voluptatibus ipsa doloribus quas, magnam excepturi repellat inventore numquam perferendis adipisci, pariatur dolore! Aspernatur tempore vel accusantium voluptas optio totam recusandae debitis accusamus magni quas doloremque alias doloribus at odit, vero, omnis ullam eos quia ipsa unde rerum eligendi! Eveniet ab nesciunt eos nihil dolorum suscipit aliquid dicta minus temporibus impedit neque perspiciatis a voluptatibus ad consequuntur facilis animi sint sunt accusamus, aspernatur rerum alias. Ex nobis ad sed adipisci modi nesciunt, quasi itaque, fugit rerum quaerat vel fuga officia eos ratione unde. Laborum voluptatem nisi culpa placeat eaque delectus optio labore dolorum eum accusantium, excepturi doloribus, odio, maxime tenetur. Cum deleniti quod corrupti perferendis excepturi dolorem nemo ea quaerat odit, omnis consequatur vero a! Placeat, alias quae similique maxime illo commodi non fugit? Nihil corrupti neque optio architecto vitae saepe facilis dolore? Maxime, sit voluptas aspernatur fuga tempora enim? Iusto sit molestias vero cumque maxime inventore hic? Suscipit itaque illo ullam ea beatae. Hic mollitia deserunt reiciendis magnam veniam illum, et architecto!</p>
 
-  <div class="loading">
-    <main>
-      <div data-scroll>
-        <div class="content">
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t1"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">Central view</h2>
-              <p class="item__caption-copy">Great turbulent clouds emerged into consciousness citizens.
-              </p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t2"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">Lost in time</h2>
-              <p class="item__caption-copy">Brain is the seed of intelligence the sky calls to us a very
-                small stage.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t3"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">Ready to land</h2>
-              <p class="item__caption-copy">Cosmos encyclopaedia galactica a billion trillion culture
-                cosmic ocean.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t1"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">All equal</h2>
-              <p class="item__caption-copy">Network of wormholes dream of the mind's eye finite but
-                unbounded concept.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t2"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">Connections</h2>
-              <p class="item__caption-copy">Two ghostly white figures in coveralls and helmets are softly
-                dancing vastness.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t3"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">The state of divergence</h2>
-              <p class="item__caption-copy">Vastness is bearable only through love invent the universe
-                vanquish.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t1"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">Open perspective</h2>
-              <p class="item__caption-copy">The only home we've ever known concept of the number one.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t3"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">Discovery of shapes</h2>
-              <p class="item__caption-copy">Decipherment explorations tesseract as a patch of light.</p>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item__img-wrap">
-              <div class="item__img item__img--t2"></div>
-            </div>
-            <div class="item__caption">
-              <h2 class="item__caption-title">The Observer</h2>
-              <p class="item__caption-copy">Astonishment muse about dispassionate extraterrestrial
-                observer.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
-  </div>
   <script>
-    {
-      // helper functions
-      const MathUtils = {
-        // map number x from range [a, b] to [c, d]
-        map: (x, a, b, c, d) => (x - a) * (d - c) / (b - a) + c,
-        // linear interpolation
-        lerp: (a, b, n) => (1 - n) * a + n * b
-      };
+    $(document).ready(function () {
+      // $fn.scrollSpeed(step, speed, easing);
+      jQuery.scrollSpeed(200, 800);
+    });
 
-      // body element
-      const body = document.body;
+    // Custom scrolling speed with jQuery
+    // Source: github.com/ByNathan/jQuery.scrollSpeed
+    // Version: 1.0.2
 
-      // calculate the viewport size
-      let winsize;
-      const calcWinsize = () =>
-        (winsize = { width: window.innerWidth, height: window.innerHeight });
-      calcWinsize();
-      // and recalculate on resize
-      window.addEventListener("resize", calcWinsize);
+    (function ($) {
 
-      // scroll position and update function
-      let docScroll;
-      const getPageYScroll = () =>
-        (docScroll = window.pageYOffset || document.documentElement.scrollTop);
-      window.addEventListener("scroll", getPageYScroll);
+      jQuery.scrollSpeed = function (step, speed, easing) {
 
-      // Item
-      class Item {
-        constructor(el) {
-          // the .item element
-          this.DOM = { el: el };
-          // the inner image
-          this.DOM.image = this.DOM.el.querySelector(".item__img");
-          this.DOM.wrap = this.DOM.el.querySelector(".item__img-wrap");
-          this.renderedStyles = {
-            // here we define which property will change as we scroll the page and the items is inside the viewport
-            // in this case we will be translating the image on the y-axis
-            // we interpolate between the previous and current value to achieve a smooth effect
-            innerTranslationY: {
-              // interpolated value
-              previous: 0,
-              // current value
-              current: 0,
-              // amount to interpolate
-              ease: 0.1,
-              // the maximum value to translate the image is set in a CSS variable (--overflow)
-              maxValue: parseInt(
-                getComputedStyle(this.DOM.image).getPropertyValue("--overflow"),
-                10
-              ),
-              // current value setter
-              // the value of the translation will be:
-              // when the item's top value (relative to the viewport) equals the window's height (items just came into the viewport) the translation = minimum value (- maximum value)
-              // when the item's top value (relative to the viewport) equals "-item's height" (item just exited the viewport) the translation = maximum value
-              setValue: () => {
-                const maxValue = this.renderedStyles.innerTranslationY.maxValue;
-                const minValue = -1 * maxValue;
-                return Math.max(
-                  Math.min(
-                    MathUtils.map(
-                      this.props.top - docScroll,
-                      winsize.height,
-                      -1 * this.props.height,
-                      minValue,
-                      maxValue
-                    ),
-                    maxValue
-                  ),
-                  minValue
-                );
-              }
-            }
-          };
-          // set the initial values
-          this.update();
-          // use the IntersectionObserver API to check when the element is inside the viewport
-          // only then the element translation will be updated
-          this.observer = new IntersectionObserver(entries => {
-            entries.forEach(
-              entry => (this.isVisible = entry.intersectionRatio > 0)
-            );
-          });
-          this.observer.observe(this.DOM.el);
-          // init/bind events
-          this.initEvents();
-        }
-        update() {
-          // gets the item's height and top (relative to the document)
-          this.getSize();
-          // sets the initial value (no interpolation)
-          for (const key in this.renderedStyles) {
-            this.renderedStyles[key].current = this.renderedStyles[
-              key
-            ].previous = this.renderedStyles[key].setValue();
-          }
-          // translate the image
-          this.layout();
-        }
-        getSize() {
-          const rect = this.DOM.el.getBoundingClientRect();
-          this.props = {
-            // item's height
-            height: rect.height,
-            // offset top relative to the document
-            top: docScroll + rect.top
-          };
-        }
-        initEvents() {
-          window.addEventListener("resize", () => this.resize());
-        }
-        resize() {
-          // on resize rest sizes and update the translation value
-          this.update();
-        }
-        render() {
-          // update the current and interpolated values
-          for (const key in this.renderedStyles) {
-            this.renderedStyles[key].current = this.renderedStyles[key].setValue();
-            this.renderedStyles[key].previous = MathUtils.lerp(
-              this.renderedStyles[key].previous,
-              this.renderedStyles[key].current,
-              this.renderedStyles[key].ease
-            );
-          }
-          // and translates the image
-          this.layout();
-        }
-        layout() {
-          // translates the image
-          this.DOM.image.style.transform = `translate3d(0,${this.renderedStyles.innerTranslationY.previous
-            }px,0)`;
-        }
-      }
+        var $document = $(document),
+          $window = $(window),
+          $body = $('html, body'),
+          option = easing || 'default',
+          root = 0,
+          scroll = false,
+          scrollY,
+          scrollX,
+          view;
 
-      // SmoothScroll
-      class SmoothScroll {
-        constructor() {
-          // the <main> element
-          this.DOM = { main: document.querySelector("main") };
-          // the scrollable element
-          // we translate this element when scrolling (y-axis)
-          this.DOM.scrollable = this.DOM.main.querySelector("div[data-scroll]");
-          // the items on the page
-          this.items = [];
-          [...this.DOM.main.querySelectorAll(".content > .item")].forEach(item =>
-            this.items.push(new Item(item))
-          );
-          // here we define which property will change as we scroll the page
-          // in this case we will be translating on the y-axis
-          // we interpolate between the previous and current value to achieve the smooth scrolling effect
-          this.renderedStyles = {
-            translationY: {
-              // interpolated value
-              previous: 0,
-              // current value
-              current: 0,
-              // amount to interpolate
-              ease: 0.1,
-              // current value setter
-              // in this case the value of the translation will be the same like the document scroll
-              setValue: () => docScroll
-            }
-          };
-          // set the body's height
-          this.setSize();
-          // set the initial values
-          this.update();
-          // the <main> element's style needs to be modified
-          this.style();
-          // init/bind events
-          this.initEvents();
-          // start the render loop
-          requestAnimationFrame(() => this.render());
-        }
-        update() {
-          // sets the initial value (no interpolation) - translate the scroll value
-          for (const key in this.renderedStyles) {
-            this.renderedStyles[key].current = this.renderedStyles[
-              key
-            ].previous = this.renderedStyles[key].setValue();
-          }
-          // translate the scrollable element
-          this.layout();
-        }
-        layout() {
-          // translates the scrollable element
-          this.DOM.scrollable.style.transform = `translate3d(0,${-1 *
-            this.renderedStyles.translationY.previous}px,0)`;
-        }
-        setSize() {
-          // set the heigh of the body in order to keep the scrollbar on the page
-          body.style.height = `${this.DOM.scrollable.scrollHeight}px`;
-        }
-        style() {
-          // the <main> needs to "stick" to the screen and not scroll
-          // for that we set it to position fixed and overflow hidden
-          this.DOM.main.style.position = "fixed";
-          this.DOM.main.style.width = this.DOM.main.style.height = "100%";
-          this.DOM.main.style.top = this.DOM.main.style.left = 0;
-          this.DOM.main.style.overflow = "hidden";
-        }
-        initEvents() {
-          // on resize reset the body's height
-          window.addEventListener("resize", () => this.setSize());
-        }
-        render() {
-          // update the current and interpolated values
-          for (const key in this.renderedStyles) {
-            this.renderedStyles[key].current = this.renderedStyles[key].setValue();
-            this.renderedStyles[key].previous = MathUtils.lerp(
-              this.renderedStyles[key].previous,
-              this.renderedStyles[key].current,
-              this.renderedStyles[key].ease
-            );
-          }
-          // and translate the scrollable element
-          this.layout();
+        if (window.navigator.msPointerEnabled)
 
-          // for every item
-          for (const item of this.items) {
-            // if the item is inside the viewport call it's render function
-            // this will update the item's inner image translation, based on the document scroll value and the item's position on the viewport
-            if (item.isVisible) {
-              item.render();
-            }
+          return false;
+
+        $window.on('mousewheel DOMMouseScroll', function (e) {
+
+          var deltaY = e.originalEvent.wheelDeltaY,
+            detail = e.originalEvent.detail;
+          scrollY = $document.height() > $window.height();
+          scrollX = $document.width() > $window.width();
+          scroll = true;
+
+          if (scrollY) {
+
+            view = $window.height();
+
+            if (deltaY < 0 || detail > 0)
+
+              root = (root + view) >= $document.height() ? root : root += step;
+
+            if (deltaY > 0 || detail < 0)
+
+              root = root <= 0 ? 0 : root -= step;
+
+            $body.stop().animate({
+
+              scrollTop: root
+
+            }, speed, option, function () {
+
+              scroll = false;
+
+            });
           }
 
-          // loop..
-          requestAnimationFrame(() => this.render());
-        }
-      }
+          if (scrollX) {
 
-      /***********************************/
-      /********** Preload stuff **********/
+            view = $window.width();
 
-      // Preload images
-      const preloadImages = () => {
-        return new Promise((resolve, reject) => {
-          imagesLoaded(
-            document.querySelectorAll(".item__img"),
-            { background: true },
-            resolve
-          );
+            if (deltaY < 0 || detail > 0)
+
+              root = (root + view) >= $document.width() ? root : root += step;
+
+            if (deltaY > 0 || detail < 0)
+
+              root = root <= 0 ? 0 : root -= step;
+
+            $body.stop().animate({
+
+              scrollLeft: root
+
+            }, speed, option, function () {
+
+              scroll = false;
+
+            });
+          }
+
+          return false;
+
+        }).on('scroll', function () {
+
+          if (scrollY && !scroll) root = $window.scrollTop();
+          if (scrollX && !scroll) root = $window.scrollLeft();
+
+        }).on('resize', function () {
+
+          if (scrollY && !scroll) view = $window.height();
+          if (scrollX && !scroll) view = $window.width();
+
         });
       };
 
-      // And then..
-      preloadImages().then(() => {
-        // Remove the loader
-        document.body.classList.remove("loading");
-        // Get the scroll position
-        getPageYScroll();
-        // Initialize the Smooth Scrolling
-        new SmoothScroll();
-      });
-    }
+      jQuery.easing.default = function (x, t, b, c, d) {
 
+        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+      };
+
+    })(jQuery);
   </script>
 </body>
 
