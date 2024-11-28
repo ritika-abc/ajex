@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Progress with Percentage</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            /* height: 2000px;   */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+        }
+
+        .percentage-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            fill: #4caf50;
+        }
+
+        .shape {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            position: fixed;
+            left: 0%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shape"></div>
+    <!-- SVG Circle representing scroll progress -->
+    <svg class="scroll-progress" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="50" stroke="#ddd" stroke-width="10" fill="none" />
+        <circle id="progress-bar" cx="60" cy="60" r="50" stroke="#4caf50" stroke-width="10" fill="none"
+            stroke-dasharray="314" stroke-dashoffset="314" />
+        <text id="percentage" class="percentage-text" x="50%" y="50%" text-anchor="middle"
+            alignment-baseline="middle">0%</text>
+    </svg>
+    <div class="">
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque tempore facere id ullam quaerat possimus et
+            repudiandae enim placeat reprehenderit, nisi aliquid magni incidunt, doloribus velit magnam accusantium
+            deserunt minima delectus nesciunt nemo? Non alias, ex illum tempora distinctio quis placeat voluptate velit
+            fugit quas? Blanditiis ex minus minima hic, molestiae dolore quaerat! Rerum quas fugit eligendi adipisci
+            sapiente repudiandae! Officia dolorum incidunt provident doloremque repellat sit, ut adipisci natus culpa
+            totam, ipsam possimus aliquid tenetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam
+            maxime, quasi ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid
+            explicabo vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea
+            ducimus repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui
+            praesentium consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni
+            quos vel aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum
+            quisquam alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur
+            cumque fuga pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio
+            recusandae vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti
+            ut architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos
+            dolorum unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosanetur modi! Eligendi odio recusandae
+            vel corporis, dignissimos laboriosam maxime, quasi ducimus maiores sunt molestias quidem corrupti ut
+            architecto accusantium? Odit impedit aliquid explicabo vero saepe nam veritatis placeat quasi quos dolorum
+            unde asperiores sint ex, sit quas optio ea ducimus repellat! Laudantium enim, neque non labore earum
+            quibusdam illo dolorum repellendus esse qui praesentium consectetur dolore ratione obcaecati consequatur
+            nesciunt reiciendis odio. Qui corporis magni quos vel aspernatur veniam dignissimos perferendis earum
+            molestias accusantium. Veritatis, porro qui eum quisquam alias quae deleniti iste nulla. Debitis ipsa quae
+            inventore excepturi doloribus, consequuntur cumque fuga pariatur provident perferendis quasi omnis corrupti
+            qui vel laboriosanetur modi! Eligendi odio recusandae vel corporis, dignissimos laboriosam maxime, quasi
+            ducimus maiores sunt molestias quidem corrupti ut architecto accusantium? Odit impedit aliquid explicabo
+            vero saepe nam veritatis placeat quasi quos dolorum unde asperiores sint ex, sit quas optio ea ducimus
+            repellat! Laudantium enim, neque non labore earum quibusdam illo dolorum repellendus esse qui praesentium
+            consectetur dolore ratione obcaecati consequatur nesciunt reiciendis odio. Qui corporis magni quos vel
+            aspernatur veniam dignissimos perferendis earum molestias accusantium. Veritatis, porro qui eum quisquam
+            alias quae deleniti iste nulla. Debitis ipsa quae inventore excepturi doloribus, consequuntur cumque fuga
+            pariatur provident perferendis quasi omnis corrupti qui vel laboriosam ducimus eius aut? Suscipit
+            dignissimos hic molestiae voluptate ea cumque soluta, perferendis error tempora numquam, odio, eius porro
+            accusamus obcaecati exercitationem illum est similique laboriosam modi? Sapiente expedita ab minima
+            similique officiis temporibus voluptatibus architecto beatae fugiat, ullam odio aliquam corporis molestiae
+            exercitationem earum error praesentium reprehenderit cum vel quae dolores omnis suscipit fuga! Corrupti hic
+            vitae inventore culpa quidem similique corporis ex fugit, aperiam doloremque. Veritatis quisquam magnam
+            assumenda, soluta voluptate eos omnis. Obcaecati nobis aperiam adipisci deserunt blanditiis doloremque
+            dicta, itaque officia temporibus vitae voluptas veniam. Aliquam vel voluptates hic deserunt enim. Amet sit
+            doloribus atque aperiam obcaecati explicabo, quos aliquam aspernatur aut! Culpa praesentium voluptas iure
+            vel nesciunt nihil qui quae est, aspernatur minima fugit modi. Quaerat perferendis incidunt veritatis, nam
+            numquam dolorem blanditiis aperiam eaque voluptas iusto deleniti. Esse aliquam veniam assumenda. Maxime quis
+            facere, similique dignissimos delectus aliquid libero possimus nostrum fugiat ipsam ut aspernatur molestiae
+            iusto illo quibusdam voluptatum minima magni ad, ullam cumque veritatis? Cum eos minima quae nam corporis
+            praesentium nemo ipsa. Possimus cupiditate deserunt sunt recusandae placeat ad officiis? Quos, optio esse.
+            Temporibus, maiores dolorem veniam eveniet vero eius sequi earum neque dolor aliquam nesciunt nulla nihil
+            enim necessitatibus quod dicta saepe maxime magni dolore in deserunt cupiditate quis consectetur sunt. Nobis
+            eveniet aspernatur omnis soluta ut dolores odio voluptatum sequi quae ipsum tenetur, iure autem illum
+            deserunt quas, magnam repellendus sapiente fugiat, minus maiores blanditiis dicta nemo vitae iusto.
+            Exercitationem ipsa ad itaque minima iste recusandae consequatur sed fuga quisquam eum possimus a adipisci,
+            ex vel rerum ullam eaque asperiores suscipit nihil? Laudantium inventore iste pariatur atque esse
+            dignissimos blanditiis provident est fugit. Consectetur modi, ab odio impedit natus autem quisquam et
+            pariatur asperiores excepturi nostrum rem rerum quibusdam enim necessitatibus iure nihil quos voluptas
+            dignissimos? Fugiat perspiciatis perferendis dignissimos nulla deleniti suscipit, doloribus harum quo
+            expedita incidunt consequuntur laudantium inventore ex laboriosam vero dolorem vel in dolorum facere
+            exercitationem architecto eos.</p>
+    </div>
+    <script>
+        // Get the SVG elements
+        const progressBar = document.getElementById('progress-bar');
+        const percentageText = document.getElementById('percentage');
+        const shape = document.querySelector(".shape"); 
+        // Function to calculate and update scroll progress
+        function updateScrollProgress() {
+            // Get the scroll position and total document height
+            const scrollPosition = window.scrollY || window.pageYOffset;
+            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+            // Calculate scroll percentage
+            const scrollPercentage = (scrollPosition / documentHeight) * 100;
+
+            // Calculate stroke-dashoffset based on the scroll percentage
+            const offset = 314 - (314 * (scrollPercentage / 100));
+
+            // Update the SVG's stroke-dashoffset to visually represent the scroll progress
+            progressBar.style.strokeDashoffset = offset;
+
+            // Update the text to show the percentage with the '%' symbol
+            var b = percentageText.textContent = `${Math.round(scrollPercentage)}%`;
+            shape.style.left= `${Math.round(scrollPercentage)}%`
+            console.log(b)
+        }
+
+        // Event listener to update scroll progress on scroll
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Initial call to set the correct progress on page load
+        updateScrollProgress();
+    </script>
+
+</body>
+
+</html>
