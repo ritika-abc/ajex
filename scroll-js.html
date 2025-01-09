@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        #set-height {
+            display: block;
+        }
+
+        #v0 {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        p font-family helvetica {
+            font-size: 24px;
+        }
+    </style>
+    <div id="set-height"></div>
+    <p id="time"></p>
+    <video id="v0" height="400px" width="500px" >
+        <source type="video/mp4"
+            src="4695859-uhd_2560_1440_30fps.mp4">
+        </source>
+    </video>
+
+    <script>
+        var frameNumber = 0, // start video at frame 0
+            // lower numbers = faster playback
+            playbackConst = 500,
+            // get page height from video duration
+            setHeight = document.getElementById("set-height"),
+            // select video element         
+            vid = document.getElementById('v0');
+
+        // dynamically set the page height according to video length
+        vid.addEventListener('loadedmetadata', function () {
+            setHeight.style.height = Math.floor(vid.duration) * playbackConst + "px";
+        });
+
+        // Use requestAnimationFrame for smooth playback
+        function scrollPlay() {
+            var frameNumber = window.pageYOffset / playbackConst;
+           var a =  vid.currentTime = frameNumber;
+            window.requestAnimationFrame(scrollPlay);
+            console.log(a)
+        }
+
+        window.requestAnimationFrame(scrollPlay);
+    </script>
+</body>
+
+</html>

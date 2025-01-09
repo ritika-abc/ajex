@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <script>
+        const nuber_snow = 100;
+        const snowlake_size = 5;
+        const snow_speed = 2;
+        const snow_col = '#ddd';
+        const snow_lakes = [];
+
+
+        const canvas = document.createElement('canvas');
+        canvas.style.position = 'absolute';
+        canvas.style.top = '0px';
+        canvas.style.pointerEvents = 'none';
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const create_snow_flake = () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            redius: Math.floor(Math.random() * snowlake_size) + 1,
+            color: snow_col,
+            speed: Math.random() * snow_speed + 3,
+            sway: Math.random() - 0.5,
+        })
+
+
+        const drowflake = snowflake => {
+            ctx.beginPath();
+            ctx.arc(snowflake.x, snowflake.y, snowflake.redius, 0, Math.PI * 2);
+            ctx.fillStyle = snowflake.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+        drowflake(create_snow_flake());
+
+
+
+        const snow_update = snowflake => {
+            snowflake.y += snowflake.speed;
+            snowflake.x += snowflake.sway;
+            if (snowflake.y > canvas.height) {
+                Object.assign(snowflake,create_snow_flake());
+            }
+        }
+
+
+        const animate = () => {
+            ctx.clearRect(0,0,canvas.width,canvas.height);
+            snow_lakes.forEach(snowflake => {
+                snow_update(snowflake);
+                drowflake(snowflake);
+            });
+            requestAnimationFrame(animate)
+        }
+
+        for( let i = 0 ; i < nuber_snow ; i++){
+            snow_lakes.push(create_snow_flake());
+        }
+
+        window.addEventListener('resize' ,  ()=>{
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        })
+        animate()
+
+
+        setInterval(animate,20000)
+    </script>
+</body>
+
+</html>
