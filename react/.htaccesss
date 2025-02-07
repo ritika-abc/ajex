@@ -1,0 +1,10 @@
+
+
+# react most imp
+RewriteEngine On
+RewriteBase /
+
+# If the requested URL is not a real file or directory, serve index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
