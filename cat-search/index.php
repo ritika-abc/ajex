@@ -56,7 +56,7 @@ $qe = mysqli_query($con,$ins);
 
                 // Perform AJAX request
                 $.ajax({
-                    url: 'search.php',
+                    url: 'search-cat.php',
                     method: 'POST',
                     data: {
                         query: query
