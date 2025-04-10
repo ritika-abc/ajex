@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <STYle>
+      
+@layer demo {
+	body {
+		padding: 1rem;
+		display: grid;
+		place-content: center;
+		gap: 2rem;
+	}
+	.wrapper {
+		--item-size: 100px;
+		--duration: 2s;
+		--timing-function: cubic-bezier(0.66, 0, 0.34, 1);
+
+		overflow-y: hidden;
+
+		display: grid;
+		grid-auto-columns: var(--item-size);
+		grid-auto-flow: column;
+		gap: 0.5rem;
+
+		/* images */
+		& > * {
+			--delay: calc(var(--i) * 100ms);
+			--translate: calc(var(--item-size) * 2);
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			/*
+			transition-property: transform, translate;
+			transition-duration: var(--duration), 0ms;
+			transition-timing-function: var(--timing-function);
+			transition-delay: var(--delay), calc(var(--delay) + var(--duration) / 2);
+			*/
+			@media not (prefers-reduced-motion) {
+				animation-name: flip-transform, flip-translate;
+				animation-duration: var(--duration);
+				animation-timing-function: var(--timing-function);
+				animation-iteration-count: infinite;
+				animation-delay: var(--delay);
+			}
+			/*
+			/* alternative on hover method * /
+			transition: transform var(--duration) var(--timing-function),
+				translate 0ms calc(var(--duration) / 2),
+				color 0ms calc(var(--duration) / 2);
+			*/
+		}
+		/*
+		/* alternative on hover method * /
+		&:is(:hover, :focus-within)  > *  {
+			transform: translateY(calc(var(--translate) * -1));
+			translate: 0 var(--translate);
+		}*/
+	}
+
+	@keyframes flip-transform {
+		50%,
+		100% {
+			transform: translateY(calc(var(--translate) * -1));
+		}
+	}
+	@keyframes flip-translate {
+		24.999999% {
+			opacity: 1;
+			translate: 0 0;
+		}
+		25% {
+			opacity: 0;
+			translate: 0 var(--translate);
+		}
+		25.000001%,
+		100% {
+			opacity: 1;
+			translate: 0 var(--translate);
+		}
+	}
+}
+
+    </STYle>
+</head>
+<body>
+    <hgroup>
+        <h1>Flip Gallery <span>#css-only, #no-repeated-elements</span></h1>
+    </hgroup>
+    <div class="wrapper">
+        <img src="https://picsum.photos/id/58/200/100" alt="" style="--i:1">
+        <img src="https://picsum.photos/id/103/200/200" alt="" style="--i:2">
+        <img src="https://picsum.photos/id/168/200/200" alt="" style="--i:3">
+        <img src="https://picsum.photos/id/242/200/200" alt="" style="--i:4">
+        <img src="https://picsum.photos/id/328/200/200" alt="" style="--i:5">
+        <!--<img src="https://picsum.photos/id/372/200/200" alt="" style="--i:6">-->
+    </div>
+</body>
+</html>
