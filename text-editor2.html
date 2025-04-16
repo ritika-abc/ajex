@@ -1,0 +1,238 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["user_name"])) {
+    header("Location:../supplier-register.php");
+}
+?>
+<?php
+if (isset($_SESSION["user_id"])) {
+    $user_id = $_SESSION["user_id"];
+}
+include "../config.php";
+$se = "SELECT * FROM `user` where `user_id`='$user_id'";
+$qu = mysqli_query($con, $se);
+while ($row = mysqli_fetch_array($qu)) {
+    $status = $row['status'];
+    $user_id = $row['user_id'];
+}
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Growindiaexport</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <link rel="icon" href="images/fevicon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="./pluto-1.0.0/css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="./pluto-1.0.0/style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="./pluto-1.0.0/css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="./pluto-1.0.0/css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="./pluto-1.0.0/css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="./pluto-1.0.0/css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="./pluto-1.0.0/css/custom.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-lite.min.js"></script>
+<style>
+    /* Reset basic Bootstrap dependencies */
+    .note-editor {
+      font-family: sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .note-toolbar {
+      background-color: #f5f5f5;
+      border-bottom: 1px solid #ccc;
+      padding: 5px;
+    }
+
+    .note-btn {
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 2px;
+      font-size: 14px;
+      color: #333;
+      background-color: #e7e7e7;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .note-btn:hover {
+      background-color: #d5d5d5;
+    }
+
+    .note-btn-group {
+      display: inline-block;
+    }
+
+    .note-editable {
+      min-height: 200px;
+      padding: 10px;
+    }
+
+    .note-statusbar {
+      background: #f5f5f5;
+      border-top: 1px solid #ccc;
+    }
+
+    /* Remove tooltip arrows */
+    .tooltip-arrow {
+      display: none !important;
+    }
+
+    .dropdown-menu {
+      border: 1px solid #ccc;
+      padding: 5px;
+      background-color: #fff;
+      z-index: 1000;
+    }
+
+    .dropdown-item {
+      display: block;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .dropdown-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+
+<body class="dashboard dashboard_1">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar  -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_1">
+                    <div class="sidebar-header">
+                        <div class="logo_section">
+                            <a href="index.php"><img class="logo_icon img-responsive" src="https://growindiaexport.com/logo/logo.png" alt="#" /></a>
+                        </div>
+                    </div>
+                    <div class="sidebar_user_info px-2">
+                        <div class="icon_setting"></div>
+                        <div class="user_profle_side">
+
+                            <div class="user_info text-capitalize">
+                                <h6><?php echo $_SESSION["user_name"] ?> </h6>
+                                <p><span class="online_animation"></span> Online</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar_blog_2">
+                    <h4>Admin Panel</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="../register-user/index.php"><i class="fa fa-dashboard yellow_color"></i> <span>Dashboard</span></a>
+                        </li>
+                        <li><a href="../register-user/profile-view.php"><i class="fa fa-user yellow_color"></i> <span>Profile</span></a></li>
+                        <li>
+                            <a href="../register-user/add-product.php"><i class="fa fa-diamond purple_color"></i> <span>Manage Products</span></a>
+                        </li>
+                        <li><a href="../register-user/view-product.php"><i class="fa fa-table purple_color2"></i> <span>Products Tables</span></a></li>
+                        <?php echo ($status == '1') ? '<li><a href="view-buyleads.php">  <i class="fa  fa-globe purple_color2"></i>  Buyleads</a></li>' : '<li><a href="all-buyleads.php"> <i class="fa  fa-globe purple_color2"></i>  Buyleads</a></li>'; ?>
+                        <li><a href="../register-user/show-buyleads.php"><i class="fa  fa-bar-chart-o purple_color2"></i> <span>Access Buyleads</span></a></li>
+                        <li> <a href="../register-user/refund-buylead.php"> <i class="fa fa-paper-plane red_color"></i> <span>Refund Buylead</span></a> </li>
+                        <li> <a href=" " style="display: block;height:100px">
+                                <marquee behavior="" direction="down" class="bg- ">
+
+                                    <a href="single-news.php?id=17" title="India open to do business with China, but terms must be looked into: EAM S Jaishankar-2024-09-11" class="text-decoration-none">
+                                        <div class="card p-3 my-2">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-4 col-md-12 col-sm-12">
+                                                    <img src="./admin/news/JAI.JPG" class="border border-2 border-dark rounded" width="100%" height="auto" style="object-fit: cover;">
+                                                </div>
+                                                <div class="col-12  ">
+                                                    <div class="text">
+                                                        <h1 style="color: black;" class="fs-6 text-muted fw-bold my-2">India open to do business with China, but terms must be looked into: EAM S Jaishankar </h1>
+
+                                                        <p style="color: #000b72;" class=" ">India&#039;s External Affairs Minister, S. Jaishankar, has indicated that while India is open to eng...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="single-news.php?id=15" title="Invest in Russia,Invest in India -2024-09-04" class="text-decoration-none">
+                                        <div class="card p-3 my-2">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-4 col-md-12 col-sm-12">
+                                                    <img src="./admin/news/russia.jpg" class="border border-2 border-dark rounded" width="100%" height="auto" style="object-fit: cover;">
+                                                </div>
+                                                <div class="col-12  ">
+                                                    <div class="text">
+                                                        <h1 style="color: black;" class="fs-6 text-muted fw-bold my-2">Invest in Russia,Invest in India </h1>
+
+                                                        <p style="color: #000b72;" class=" ">It is well-known that in recent years India has made substantial progress in Ease of Doing Business ...</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                  
+                                </marquee>
+
+                            </a> </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+                            <div class="logo_section">
+                                <a href="index.php"><img class="img- " height="60px" width="200px" src="https://growindiaexport.com/logo/logo.png" alt="#" /></a>
+                            </div>
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-bell-o"></i><span class="badge">2</span></a></li>
+                                        <li><a href="#"><i class="fa fa-question-circle"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-envelope-o"></i><span class="badge">3</span></a></li>
+                                    </ul>
+                                    <ul class="user_profile_dd mx-2">
+                                        <li>
+                                            <a class="dropdown-toggle" data-toggle="dropdown"> <span class="name_user"><?php echo $_SESSION["user_name"] ?> </span></a>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="profile-view.php">My Profile</a>
+
+                                                <a class="dropdown-item" href="../register-user/logout.php"><span>Log Out</span> <i class="fa fa-sign-out"></i></a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
