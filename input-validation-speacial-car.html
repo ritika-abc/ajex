@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Character Alert</title>
+</head>
+
+<body>
+    <input type="text" id="user_name" class="q" placeholder="Enter your name...">
+    <input type="text" id="company_name" class="q" placeholder="Enter company name...">
+    <input type="text" id="company_address" class="q" placeholder="Enter company address...">
+    
+    <script>
+        // Get all elements with class 'q' (the three input fields)
+        const inputs = document.getElementsByClassName('q');
+    
+        // Special characters to check for
+        const specialCharacters = ['<', '>', '#', '^', ',', '*' ,'!','~','`','$','/','(',')'];
+    
+        // Function to validate input and alert if special characters are detected
+        function validateInput(event) {
+            const inputValue = event.target.value;
+    
+            // Check if any special character is found in the input
+            for (let char of specialCharacters) {
+                if (inputValue.includes(char)) {
+                    alert("Special character detected!");
+                    event.target.value = "";  // Clear the input value
+                    break;  // Stop after the first special character is found
+                }
+            }
+        }
+    
+        // Add event listener to all inputs
+        for (let input of inputs) {
+            input.addEventListener('input', validateInput);
+        }
+    </script>
+    
+</body>
+
+</html>
+
+
+
+

@@ -36,7 +36,7 @@ include "config.php";
                                 <li class="nav-item" title="<?php echo $row['country_name'] ?>"> <i class="fa-solid fa-location-dot " style="color: #3fb635;margin-right:10px"></i> <?php echo $row['country_name'] ?> </li>
                                 <li class="nav-item"><?php echo $row['accessed_at'] ?></li>
                             </ul>
-                            <div class="row  mt-3 table-borderless">
+                            <!-- <div class="row  mt-3 table-borderless"> -->
                                 <div class="col-lg-6  ">
                                     <div class="row   text-capitalize">
                                         <div class="col-6">
