@@ -98,6 +98,18 @@ if (isset($_POST['submit'])) {
             echo "Error: The image is too large. Maximum dimensions are 1500x1500 pixels.";
             exit;
         }
+            // Fetch the current image path from the database before uploading the new image
+    $sql1 = "SELECT `image` FROM `user` WHERE `user_id`='$user_id'";
+    $result = mysqli_query($con, $sql1);
+    if ($result) {
+        $user_data = mysqli_fetch_assoc($result);
+        $old_image_path = $user_data['image'];  // Get the old image path
+        if ($old_image_path && file_exists($old_image_path)) {
+            // Delete the old image if it exists
+            unlink($old_image_path);
+        }
+    }
+
     
         // Generate a unique name for the image
         $image_name = time() . "_" . $_FILES["image"]["name"];
