@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Editor</title>
+    <style>
+        .editor {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .toolbar {
+            margin-bottom: 10px;
+        }
+
+        .toolbar button {
+            padding: 8px 12px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .toolbar button:hover {
+            background-color: #ddd;
+            border-color: #aaa;
+        }
+
+        .toolbar button:active {
+            background-color: #ccc;
+            border-color: #888;
+        }
+
+        .toolbar button:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 0, 255, 0.2);
+        }
+
+        .output-textarea {
+            width: 100%;
+            height: 200px;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            white-space: pre-wrap;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="toolbar">
+        <button onclick="document.execCommand('bold')">Bold</button>
+        <button onclick="document.execCommand('italic')">Italic</button>
+        <button onclick="document.execCommand('underline')">Underline</button>
+        <button onclick="document.execCommand('insertOrderedList')">Ordered List</button>
+        <button onclick="document.execCommand('insertUnorderedList')">Unordered List</button>
+        <button onclick="document.execCommand('justifyCenter')">Center</button>
+        <button onclick="document.execCommand('formatBlock', false, 'h1')">Heading 1</button>
+        <button onclick="document.execCommand('formatBlock', false, 'h2')">Heading 2</button>
+    </div>
+
+    <!-- Editable Content Area -->
+    <div class="editor" contenteditable="true" oninput="updateTextarea()"></div>
+
+    <!-- Textarea for showing content -->
+    <textarea class="output-textarea" readonly></textarea>
+
+    <script>
+        function updateTextarea() {
+            // Get the content from the editor
+            const editorContent = document.querySelector('.editor').innerHTML;
+            // Get the textarea and update its value
+            const textarea = document.querySelector('.output-textarea');
+            textarea.value = editorContent;
+        }
+    </script>
+
+</body>
+</html>
