@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Only First 3 Tags</title>
+    <script>
+        window.onload = function() {
+            const allTags = document.body.children;  // Get all child elements of the body
+            let count = 0;
+
+            for (let i = 0; i < allTags.length; i++) {
+                if (count < 3) {
+                    allTags[i].style.display = 'block';  // Display first three
+                    count++;
+                } else {
+                    allTags[i].style.display = 'none';   // Hide the rest
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Heading 1</h1>
+    <p>Paragraph 1</p>
+    <h2>Heading 2</h2>
+    <p>Paragraph 2</p>
+    <h3>Heading 3</h3>
+    <p>Paragraph 3</p>
+    <h4>Heading 4</h4>
+    <p>Paragraph 4</p>
+    <h5>Heading 5</h5>
+    <p>Paragraph 5</p>
+</body>
+</html>
