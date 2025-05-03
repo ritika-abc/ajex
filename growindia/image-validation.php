@@ -60,68 +60,68 @@ if (isset($_POST['submit'])) {
     $item3 = trim($_POST['item3']);
 
     // Check if any required field is empty
-    if (empty($product_name)   ) {
+    if (empty($product_name)) {
         echo "<a href='profile-view.php'><h1 class='mt-5'>All fields are required. <small>Click Here</small></h1></a>";
         exit;
     }
 
-     
+
     // Allowed image extensions
     $allowed_extensions = ['jpg', 'jpeg', 'png'];
-    
+
     // Initialize the image path to be the current one in the database (if no new image is uploaded)
-    $image_path = ""; 
-    
+    $image_path = "";
+
     // Get the file extension for image validation
     if (isset($_FILES["image"]) && $_FILES["image"]["error"] == UPLOAD_ERR_OK) {
         $file_extension = strtolower(pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION));
-    
+
         // Check if the uploaded file has a valid extension
         if (!in_array($file_extension, $allowed_extensions)) {
             echo "Error: Invalid image format. Only .jpg, .jpeg, and .png files are allowed.";
             exit;
         }
-    
+
         // Check the image size (e.g., limit to 5MB)
         if ($_FILES["image"]["size"] > 5 * 1024 * 1024) { // 5MB limit
             echo "Error: The image is too large. Maximum size is 5MB.";
             exit;
         }
-    
+
         // Check the image dimensions (e.g., limit to 1500x1500 pixels)
         list($width, $height) = getimagesize($_FILES['image']['tmp_name']);
-    
+
         $max_width = 1500;
         $max_height = 1500;
-    
+
         if ($width > $max_width || $height > $max_height) {
             echo "Error: The image is too large. Maximum dimensions are 1500x1500 pixels.";
             exit;
         }
-            // Fetch the current image path from the database before uploading the new image
-    $sql1 = "SELECT `image` FROM `user` WHERE `user_id`='$user_id'";
-    $result = mysqli_query($con, $sql1);
-    if ($result) {
-        $user_data = mysqli_fetch_assoc($result);
-        $old_image_path = $user_data['image'];  // Get the old image path
-        if ($old_image_path && file_exists($old_image_path)) {
-            // Delete the old image if it exists
-            unlink($old_image_path);
+        // Fetch the current image path from the database before uploading the new image
+        $sql1 = "SELECT `image` FROM `user` WHERE `user_id`='$user_id'";
+        $result = mysqli_query($con, $sql1);
+        if ($result) {
+            $user_data = mysqli_fetch_assoc($result);
+            $old_image_path = $user_data['image'];  // Get the old image path
+            if ($old_image_path && file_exists($old_image_path)) {
+                // Delete the old image if it exists
+                unlink($old_image_path);
+            }
         }
-    }
 
-    
+
         // Generate a unique name for the image
         $image_name = time() . "_" . $_FILES["image"]["name"];
         $image_path = "logo/" . $image_name;  // Path to store the image
-    
+
         // Move the uploaded file to the target directory
         if (!move_uploaded_file($_FILES["image"]['tmp_name'], $image_path)) {
             echo "Error uploading the image.";
             exit;
         }
     }
-    
+
     // If no image was uploaded, $image_path will remain an empty string, and we shouldn't update the image field
     if ($_FILES["image"]["error"] != UPLOAD_ERR_OK) {
         // If no new image is uploaded, you should keep the existing image
@@ -133,7 +133,7 @@ if (isset($_POST['submit'])) {
             $image_path = $user_data['image'];  // Keep the old image if no new image is uploaded
         }
     }
-    
+
     // Now update the user's profile in the database
     $sql1 = "UPDATE `user` SET 
                 `user_phone`='$user_phone',
@@ -152,7 +152,7 @@ if (isset($_POST['submit'])) {
                 `item3`='$item3',
                 `image`='$image_path'  -- This will only update if a new image is uploaded or use the old one
             WHERE `user_id`='$user_id'";
-    
+
     // Execute the SQL query
     $query1 = mysqli_query($con, $sql1);
     if ($query1) {
@@ -160,9 +160,6 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Failed to update profile.";
     }
-     
-    
-    
 }
 ?>
 
@@ -533,34 +530,34 @@ if (isset($_POST['submit'])) {
                                         </div>
                                         <hr>
                                         <div class="d-none">
-                                        <div class="row    ">
-                                            <div class="col-lg-6 my-3 ">
-                                                <div class="">
-                                                    <label for="" class=" text-danger">Enter Product / Service 1 Name*</label>
-                                                    <input type="text" class="form-control" name="item1" value="1" require>
+                                            <div class="row    ">
+                                                <div class="col-lg-6 my-3 ">
+                                                    <div class="">
+                                                        <label for="" class=" text-danger">Enter Product / Service 1 Name*</label>
+                                                        <input type="text" class="form-control" name="item1" value="1" require>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 my-3 ">
+                                                    <div class="">
+                                                        <label for="" class=" text-danger">Enter Product / Service 2 Name*</label>
+                                                        <input type="text" class="form-control" name="item2" value="1" require>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 my-3 ">
-                                                <div class="">
-                                                    <label for="" class=" text-danger">Enter Product / Service 2 Name*</label>
-                                                    <input type="text" class="form-control" name="item2" value="1" require>
+                                            <div class="row    ">
+                                                <div class="col-lg-6 my-3 ">
+                                                    <div class="">
+                                                        <label for="" class=" text-danger">Enter Product / Service 3 Name*</label>
+                                                        <input type="text" class="form-control" name="item3" value="1" require>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 my-3 ">
+                                                    <div class="">
+                                                        <label for="" class=" text-danger">Enter Product / Service 4 Name*</label>
+                                                        <input type="text" class="form-control" name="product_name" value="1" require>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row    ">
-                                            <div class="col-lg-6 my-3 ">
-                                                <div class="">
-                                                    <label for="" class=" text-danger">Enter Product / Service 3 Name*</label>
-                                                    <input type="text" class="form-control" name="item3" value="1" require>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 my-3 ">
-                                                <div class="">
-                                                    <label for="" class=" text-danger">Enter Product / Service 4 Name*</label>
-                                                    <input type="text" class="form-control" name="product_name" value="1" require>
-                                                </div>
-                                            </div>
-                                        </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -589,15 +586,15 @@ if (isset($_POST['submit'])) {
                                                     <input type="hidden" name="email" value="<?php echo  $_SESSION["user_email"]; ?>" class="form-control" placeholder="Add Your Service / Products">
                                                 </div>
                                             </div>
-                                           
+
                                         </div>
                                         <div class="row my-4">
-                                                <div class="col-lg-8">
-                                                    <?php
+                                            <div class="col-lg-8">
+                                                <?php
                                                 include "update-service.php";
                                                 ?>
-                                                </div>
                                             </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="read_more">
@@ -626,6 +623,3 @@ if (isset($_POST['submit'])) {
 include "include1/footer.php";
 ob_end_flush();
 ?>
-
-
-
