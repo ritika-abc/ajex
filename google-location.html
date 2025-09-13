@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Get Address from Location</title>
+</head>
+<body>
+
+<h2>Click to Get Your Address</h2>
+<button onclick="getLocation()">Get Address</button>
+<p id="address"></p>
+
+<script>
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(getAddressFromCoords, showError);
+  } else {
+    document.getElementById("address").innerHTML = "Geolocation not supported.";
+  }
+}
+
+function getAddressFromCoords(position) {
+  const lat = position.coords.latitude;
+  const lng = position.coords.longitude;
+
+  const apiKey = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your real key
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === "OK") {
+        const fullAddress = data.results[0].formatted_address;
+        document.getElementById("address").innerHTML = `Your address: ${fullAddress}`;
+      } else {
+        document.getElementById("address").innerHTML = "Unable to get address.";
+      }
+    })
+    .catch(error => {
+      document.getElementById("address").innerHTML = "Error fetching address.";
+      console.error(error);
+    });
+}
+
+function showError(error) {
+  alert("Error getting location: " + error.message);
+}
+</script>
+
+</body>
+</html>
+<!--  
+
+
+
+
+
+
+
+
+
+
+-->

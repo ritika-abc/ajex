@@ -55,3 +55,49 @@
 </body>
 
 </html>
+
+ 
+
+
+
+<!-- 
+
+
+        .card {
+            width: 150px;
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <label for="images">Choose Images</label>
+        <input type="file" name="images[]" id="images" multiple accept="image/*">
+        <button type="submit" name="submit">Upload Images</button>
+    </form>
+
+    This section will display the uploaded images  
+    <div class="image-cards">
+  
+
+
+
+
+ 
+
+
+
+
+
+-->
